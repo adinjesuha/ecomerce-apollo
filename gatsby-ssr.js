@@ -6,7 +6,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
     fetch,
-    uri: `${process.env.GATSBY_GRAPHCMS_API}`,
+    uri: '/.netlify/functions/graphql',
   })
 })
 
