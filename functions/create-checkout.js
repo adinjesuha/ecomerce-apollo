@@ -8,6 +8,10 @@ exports.handler = async ({body}) => {
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
+    billing_address_collection: 'auto',
+    shipping_address_collection: {
+      allowed_countries: ['US', 'HN'],
+    },
     line_items: [{
       name: product.name,
       description: product.description,
