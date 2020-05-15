@@ -40,7 +40,7 @@ const Cart = ({showCart}) => {
       pos="absolute" 
       top="20"
       right={8}
-      display={showCart ? "none" : "flex"}
+      display={showCart ? "flex" : "none"}
     >
       <Flex
         direction="column"

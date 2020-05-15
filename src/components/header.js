@@ -62,6 +62,7 @@ const Header = props => {
           <MenuItems key={`link.name-${i}`}><Link to={link.path}>{link.name}</Link></MenuItems>
         ))}
       </Box>
+      
       <Button 
         rightIcon={MdShoppingCart}
         variant="ghost"
