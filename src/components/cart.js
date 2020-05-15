@@ -1,15 +1,15 @@
 import React from 'react'
 import { useShoppingCart } from 'use-shopping-cart'
-import { Button } from '@chakra-ui/core'
+import { Button, Box, Divider, Text, Flex } from '@chakra-ui/core'
+import CartItems from './cartItems';
 
-const Cart = () => {
+const Cart = ({showCart}) => {
 
   const { 
     cartDetails, 
-    cartCount, 
-    totalPrice, 
-    redirectToCheckout ,
-    clearCart
+    redirectToCheckout,
+    totalPrice,
+    cartCount
   } = useShoppingCart();
 
   const handleSubmit = async (event) => {
@@ -27,19 +27,51 @@ const Cart = () => {
     .catch((error) => console.log(error));
     redirectToCheckout({sessionId: response.sessionId});
   }
+
   return (
-    <React.Fragment>
-      <details>
-        <summary>Cart Details ({cartCount} Products)</summary>
-        <ul>{Object.values(cartDetails).map(product => (
-          <li key={product.sku}>{product.name} ({product.quantity}) - {product.formattedValue}</li>
-        ))}</ul>
-        <p><strong>Total price: {totalPrice()}</strong></p>
-        <Button onClick={handleSubmit}>Check Out</Button>
-        <Button onClick={clearCart}>Clear Cart</Button>
-        <p>A $3.50 shipping  and handling charge will be applied at checkout.</p>
-      </details>
-    </React.Fragment>
+    <Flex 
+      bg="white" 
+      minH={300}
+      borderWidth="1px"
+      rounded="lg"
+      p={4}
+      direction="column"
+      justify="space-between"
+      pos="absolute" 
+      top="20"
+      right={8}
+      display={showCart ? "none" : "flex"}
+    >
+      <Flex
+        direction="column"
+        justify={cartCount > 0 ? "flex-start" : "center"}
+        align="center"
+        h={230}
+        overflow="hidden"
+        overflowY="auto"
+      >
+        <CartItems />
+      </Flex>
+      <Box>
+        <Divider mb={5}/>
+        <Flex 
+          align="center" 
+          justify="space-between"
+          mb={5}
+        >
+          <Text fontSize="sm">Total amount</Text> 
+          <Text fontSize="xl"><strong>{totalPrice()}</strong></Text> 
+        </Flex>
+        <Button 
+          size="lg"
+          variantColor="blue"
+          width="100%"
+          onClick={handleSubmit}
+        >
+          Continue to checkout
+        </Button>
+      </Box>
+    </Flex>
   )
 }
 

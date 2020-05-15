@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from 'gatsby';
 import { Box, Heading, Flex, Text, Button } from "@chakra-ui/core";
+import { MdShoppingCart } from 'react-icons/md';
+import Cart from "./cart";
 
 const links = [
   {name: 'Docs', path: "/docs"},
@@ -14,8 +17,10 @@ const MenuItems = ({ children }) => (
 );
 
 const Header = props => {
-  const [show, setShow] = React.useState(false);
+  const [show, setShow] = useState(false);
+  const [showCart, setShowCart] = useState(false);
   const handleToggle = () => setShow(!show);
+  const handleToggleCart = () => setShowCart(!showCart);
 
   return (
     <Flex
@@ -23,14 +28,15 @@ const Header = props => {
       align="center"
       justify="space-between"
       wrap="wrap"
-      padding="1.5rem"
+      p="0.8rem 2rem"
       bg="teal.500"
-      color="white"
       {...props}
     >
       <Flex align="center" mr={5}>
         <Heading as="h1" size="lg">
-          Chakra UI
+          <Link to="/">
+            Chakra UI
+          </Link>
         </Heading>
       </Flex>
 
@@ -53,18 +59,18 @@ const Header = props => {
         flexGrow={1}
       >
         {links.map((link, i) => (
-          <MenuItems key={`link.name-${i}`}>{link.name}</MenuItems>
+          <MenuItems key={`link.name-${i}`}><Link to={link.path}>{link.name}</Link></MenuItems>
         ))}
       </Box>
-
-      <Box
-        display={{ sm: show ? "block" : "none", md: "block" }}
-        mt={{ base: 4, md: 0 }}
+      <Button 
+        rightIcon={MdShoppingCart}
+        variant="ghost"
+        color="white"
+        onClick={handleToggleCart}
       >
-        <Button bg="transparent" border="1px">
-          Create account
-        </Button>
-      </Box>
+        Cart
+      </Button>
+      <Cart showCart={showCart}/>
     </Flex>
   );
 };
