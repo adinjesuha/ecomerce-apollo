@@ -4,41 +4,44 @@ import { Button, Box, Image, Flex, Text } from '@chakra-ui/core'
 import { MdAdd, MdRemove } from 'react-icons/md'
 
 const CartItemEmpty = () => (
-  <Box
-    textAlign="center"
-    minW={320}
+  <Flex
+    align="center"
+    direction="column"
+    justify="center"
+    h="90px"
   >
     <Text fontSize="md">Your cart is empty</Text>
-  </Box>
+  </Flex>
 )
 
 const CartItem = ({addItem, reduceItemByOne, cartEntry}) => (
   <Flex 
     align="center"
+    justify="space-between"
     mb={4}
-    p={2}
   >
-    <Box
-      maxW="70px"
-      rounded="md" 
-      overflow="hidden"
+    <Flex
+      align="center"
     >
-      <Image 
-        size="80px"
-        objectFit="cover"
-        src={cartEntry.image}
-        alt={cartEntry.name}
-      />
-    </Box>
-    <Box 
-      ml={2}
-      minW="200px"
-    >
-      <Text fontSize="sm">
-        {cartEntry.name}
-      </Text>
-      <Text fontSize="xs">{cartEntry.formattedValue}</Text>
-    </Box>
+      <Box
+        w="60px"
+        rounded={4}
+        overflow="hidden"
+      >
+        <Image 
+          size="100%"
+          objectFit="cover"
+          src={cartEntry.image}
+          alt={cartEntry.name}
+        />
+      </Box>
+      <Box ml={3}>
+        <Text fontSize="sm">
+          {cartEntry.name}
+        </Text>
+        <Text fontSize="xs">{cartEntry.formattedValue}</Text>
+      </Box>
+    </Flex>
     <Box>
       <Flex align="center" flexDirection="column">
         <Button

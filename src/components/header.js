@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from 'gatsby';
-import { Box, Heading, Flex, Text, Button } from "@chakra-ui/core";
+import { Box, Heading, Flex, Text, Button, useDisclosure } from "@chakra-ui/core";
 import { MdShoppingCart } from 'react-icons/md';
-import Cart from "./cart";
+import CartDrawer from "./cartDrawer";
 
 const links = [
   {name: 'Docs', path: "/docs"},
@@ -17,10 +17,11 @@ const MenuItems = ({ children }) => (
 );
 
 const Header = props => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef();
+
   const [show, setShow] = useState(false);
-  const [showCart, setShowCart] = useState(false);
   const handleToggle = () => setShow(!show);
-  const handleToggleCart = () => setShowCart(!showCart);
 
   return (
     <Flex
@@ -67,11 +68,17 @@ const Header = props => {
         rightIcon={MdShoppingCart}
         variant="ghost"
         color="white"
-        onClick={handleToggleCart}
+        onClick={onOpen}
+        ref={btnRef}
       >
         Cart
       </Button>
-      <Cart showCart={showCart}/>
+      <CartDrawer 
+        isOpen={isOpen}
+        placement="right"
+        onClose={onClose}
+        finalFocusRef={btnRef}
+      />
     </Flex>
   );
 };
