@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 
 import Product from '../components/product';
 import SEO from '../components/SEO';
+import { Grid } from '@chakra-ui/core';
 
 const CategoryPage = ({
   data: {
@@ -16,11 +17,14 @@ const CategoryPage = ({
     <React.Fragment>
       <SEO pageTitle={category.name}/>
       <h1>{category.name}</h1>
-      <ul>
+      <Grid 
+        templateColumns="repeat(4, 1fr)"
+        gap={6}
+      >
         {category.products.map(product => (
           <Product key={product.sku} {...product}/>
         ))}
-      </ul>
+      </Grid>
     </React.Fragment>
   )
 }

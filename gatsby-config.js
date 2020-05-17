@@ -1,5 +1,5 @@
-// gatsby-config.js
 require(`dotenv`).config();
+const path = require(`path`);
 
 module.exports = {
   siteMetadata:{
@@ -8,6 +8,8 @@ module.exports = {
     siteUrl: "https://ecommerce-apollo-graphcms.netlify.app",
   },
   plugins: [
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: "gatsby-plugin-chakra-ui",
       options: {

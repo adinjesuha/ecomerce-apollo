@@ -1,7 +1,8 @@
 import React from 'react'
 import { useShoppingCart } from 'use-shopping-cart'
+import Img from "gatsby-image"
 
-import { Box, Heading, Text, Button, useToast } from '@chakra-ui/core'
+import { Box, Heading, Text, Button, useToast, Image } from '@chakra-ui/core'
 
 const Product = ({...product}) => {
   const { addItem } = useShoppingCart()
@@ -15,9 +16,18 @@ const Product = ({...product}) => {
   
   return (
     <Box 
-      p="4"
       w="100%"
+      h={400}
+      mb={4}
     >
+      <Image
+        src={product.image}
+        alt={product.name}
+        size="100%"
+        objectFit="cover"
+        overflow="hidden"
+        rounded={6}
+      />
       <Heading mb="2">{product.name}</Heading>
       <Text>{product.description}</Text>
       <Text>{formatPrice(product.price, product.currency)}</Text>
