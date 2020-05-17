@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import Product from '../components/product';
 import SEO from '../components/SEO';
 import { Grid } from '@chakra-ui/core';
+import HeadLine from '../components/headLine';
 
 const CategoryPage = ({
   data: {
@@ -16,7 +17,9 @@ const CategoryPage = ({
   return (
     <React.Fragment>
       <SEO pageTitle={category.name}/>
-      <h1>{category.name}</h1>
+      <HeadLine 
+        textLine={category.name}
+      />
       <Grid 
         templateColumns="repeat(4, 1fr)"
         gap={6}

@@ -1,8 +1,6 @@
 import React from 'react'
 import { useShoppingCart } from 'use-shopping-cart'
-import Img from "gatsby-image"
-
-import { Box, Heading, Text, Button, useToast, Image } from '@chakra-ui/core'
+import { Box, Text, Button, useToast, Image, Flex } from '@chakra-ui/core'
 
 const Product = ({...product}) => {
   const { addItem } = useShoppingCart()
@@ -17,8 +15,8 @@ const Product = ({...product}) => {
   return (
     <Box 
       w="100%"
-      h={400}
-      mb={4}
+      h={350}
+      mb={20}
     >
       <Image
         src={product.image}
@@ -26,27 +24,39 @@ const Product = ({...product}) => {
         size="100%"
         objectFit="cover"
         overflow="hidden"
-        rounded={6}
       />
-      <Heading mb="2">{product.name}</Heading>
-      <Text>{product.description}</Text>
-      <Text>{formatPrice(product.price, product.currency)}</Text>
-        <Button 
-          type="submit"
-          onClick={ event => {
-            event.preventDefault()
-            const item = product.name
-            addItem(product)
-            toast({
-              position: "bottom-right",
-              title: "Item adedd.",
-              description: `We've add ${item} to your cart.`,
-              status: "info",
-              duration: 6000,
-              isClosable: true,
-            })
-          }}
-        >Add to cart</Button>
+      <Box mt={4}>
+        <Text mb="2">{product.name}</Text>
+        <Flex 
+          align="center"
+          justify="space-between"
+        >
+          <Text
+            fontSize="lg"
+          >
+            <strong>{formatPrice(product.price, product.currency)}</strong>
+          </Text>
+          <Button 
+            borderRadius="none"
+            type="submit"
+            onClick={ event => {
+              event.preventDefault()
+              const item = product.name
+              addItem(product)
+              toast({
+                position: "bottom-right",
+                title: "Item adedd.",
+                description: `We've add ${item} to your cart.`,
+                status: "info",
+                duration: 6000,
+                isClosable: true,
+              })
+            }}
+          >
+            Add to cart
+          </Button>
+        </Flex>
+      </Box>
     </Box>
   )
 }

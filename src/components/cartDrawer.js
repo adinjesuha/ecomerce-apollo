@@ -10,7 +10,7 @@ import {
   Button,
   Divider,
   Flex,
-  Text
+  Text,
 } from "@chakra-ui/core";
 import { useShoppingCart } from 'use-shopping-cart';
 
@@ -25,8 +25,7 @@ const CartDrawer = ({
   const { 
     cartDetails, 
     redirectToCheckout,
-    totalPrice,
-    cartCount
+    totalPrice
   } = useShoppingCart();
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -74,10 +73,11 @@ const CartDrawer = ({
 
         <DrawerFooter>
         <Button 
+          onClick={handleSubmit}
           size="lg"
           variantColor="blue"
+          rounded="none"
           width="100%"
-          onClick={handleSubmit}
         >
           Continue to checkout
         </Button>

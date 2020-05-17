@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql, useStaticQuery, Link } from 'gatsby'
 import { Grid, Box, Image, Heading } from '@chakra-ui/core'
+import HeadLine from './headLine'
 
 const Category = ({...category}) => (
   <Box
@@ -13,7 +14,6 @@ const Category = ({...category}) => (
       size="100%"
       objectFit="cover"
       overflow="hidden"
-      rounded={6}
     />
     <Box
       pos="absolute"
@@ -23,8 +23,9 @@ const Category = ({...category}) => (
       color="white"
       textAlign="center"
     >
-      <Heading textTransform="uppercase">{category.name}</Heading>
-      <Link to={`/categories/${category.slug}`}>Go shop</Link>
+      <Link to={`/categories/${category.slug}`}>
+        <Heading textTransform="uppercase" mb={4}>{category.name}</Heading>
+      </Link>
     </Box>
   </Box>
 )
@@ -46,7 +47,9 @@ const Categories = () => {
   )
   return (
     <React.Fragment>
-      <h1>Shop by Category</h1>
+      <HeadLine 
+        textLine="Shop by Category"
+      />
       <Grid templateColumns="repeat(3, 1fr)" gap={6} mb={6}>
       {data.cms.categories.slice(0,3).map(category => (
         <Category key={`${category.name}-${category.order}`} {...category}/>
