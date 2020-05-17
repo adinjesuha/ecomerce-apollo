@@ -41,6 +41,7 @@ const Cart = ({showCart}) => {
       top="20"
       right={8}
       display={showCart ? "flex" : "none"}
+      zIndex={2}
     >
       <Flex
         direction="column"

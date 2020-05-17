@@ -1,7 +1,13 @@
 import React from 'react'
 
-import Store from '../components/store'
+import SEO from '../components/SEO'
+import Categories from '../components/categories'
 
-const IndexPage = () => <Store />
+const IndexPage = () => (
+  <React.Fragment>
+    <SEO pageTitle="Home"/>
+    <Categories />
+  </React.Fragment>
+)
 
 export default IndexPage

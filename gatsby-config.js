@@ -3,7 +3,9 @@ require(`dotenv`).config();
 
 module.exports = {
   siteMetadata:{
-    title: 'Ecommerce with Apollo'
+    title: "Ecommerce with Apollo",
+    description: "Beautiful JAMStack ecommerce template with serverless functions",
+    siteUrl: "https://ecommerce-apollo-graphcms.netlify.app",
   },
   plugins: [
     {

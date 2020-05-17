@@ -1,28 +1,20 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
-import { graphql, useStaticQuery } from 'gatsby'
+import { Box } from '@chakra-ui/core'
 
 import Header from './header'
 
 const Layout = ({children}) => {
-  const data = useStaticQuery(
-    graphql`
-      {
-        site{
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `
-  )
   return (
     <React.Fragment>
-      <Helmet>
-        <title>{data.site.siteMetadata.title}</title>  
-      </Helmet>
       <Header />
-      <main>{children}</main>
+      <Box 
+        as="main"
+        w="100%" 
+        pl={{ base: 4, md: 6, lg:8 }} 
+        pr={{ base: 4, md: 6, lg:8 }}
+      >
+        {children}
+      </Box>
     </React.Fragment>
   )
 }
