@@ -2,6 +2,7 @@ import React from 'react'
 import { Box } from '@chakra-ui/core'
 
 import Header from './header'
+import Footer from './footer'
 
 const Layout = ({children}) => {
   return (
@@ -15,6 +16,7 @@ const Layout = ({children}) => {
       >
         {children}
       </Box>
+      <Footer />
     </React.Fragment>
   )
 }

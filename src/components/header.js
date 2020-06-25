@@ -3,83 +3,70 @@ import { Link } from 'gatsby';
 import { Box, Heading, Flex, Text, Button, useDisclosure } from "@chakra-ui/core";
 import { MdShoppingCart } from 'react-icons/md';
 import CartDrawer from "./cartDrawer";
+import { useShoppingCart } from 'use-shopping-cart'
 
 const links = [
-  {name: 'Docs', path: "/docs"},
-  {name: 'Examples', path: "/examples"},
-  {name: 'Blog', path: "/blog"},
+  {name: 'Womens', path: "/categories/womens"},
+  {name: 'Mens', path: "/categories/mens"},
+  {name: 'Jackets', path: "/categories/jackets"},
+  {name: 'Hats', path: "/categories/hats"},
+  {name: 'Sneakers', path: "/categories/sneakers"},
 ]
 
 const MenuItems = ({ children }) => (
-  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+  <Text mt={{ base: 4, md: 0 }} mr={{base: 2, md: 4}} display="block">
     {children}
   </Text>
 );
 
-const Header = props => {
+const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
 
-  const [show, setShow] = useState(false);
-  const handleToggle = () => setShow(!show);
+  const { cartCount } = useShoppingCart()
 
   return (
-    <Flex
+    <Box
       as="nav"
-      align="center"
-      justify="space-between"
-      wrap="wrap"
-      p="0.8rem 2rem"
-      bg="teal.500"
-      {...props}
+      pt="20px"
+      pl={{ base: 4, md: 6, lg:8 }} 
+      pr={{ base: 4, md: 6, lg:8 }}
     >
-      <Flex align="center" mr={5}>
+      <Flex 
+        align="center"
+        justify="space-between"
+        width="100%"
+        borderBottom="1px solid"
+        borderColor="gray.100"
+        pb="10px"
+        mb="10px"
+      >
         <Heading as="h1" size="lg">
-          <Link to="/">
-            Chakra UI
-          </Link>
+          <Link to="/">SIMPLE AS F#*@</Link>
         </Heading>
+        <Button 
+          leftIcon={MdShoppingCart}
+          variant="ghost"
+          onClick={onOpen}
+          ref={btnRef}
+        >
+          {cartCount}
+        </Button>
       </Flex>
 
-      <Box display={{ sm: "block", md: "none" }} onClick={handleToggle}>
-        <svg
-          fill="white"
-          width="12px"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title>Menu</title>
-          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-        </svg>
-      </Box>
-
-      <Box
-        display={{ sm: show ? "block" : "none", md: "flex" }}
-        width={{ sm: "full", md: "auto" }}
-        alignItems="center"
-        flexGrow={1}
-      >
-        {links.map((link, i) => (
-          <MenuItems key={`link.name-${i}`}><Link to={link.path}>{link.name}</Link></MenuItems>
-        ))}
-      </Box>
+      <Flex>
+      {links.map((link, i) => (
+        <MenuItems key={`link.name-${i}`}><Link to={link.path}>{link.name}</Link></MenuItems>
+      ))}
+      </Flex>
       
-      <Button 
-        rightIcon={MdShoppingCart}
-        variant="ghost"
-        color="white"
-        onClick={onOpen}
-        ref={btnRef}
-      >
-        Cart
-      </Button>
       <CartDrawer 
         isOpen={isOpen}
         placement="right"
         onClose={onClose}
         finalFocusRef={btnRef}
       />
-    </Flex>
+    </Box>
   );
 };
 

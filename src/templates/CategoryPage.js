@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 
 import Product from '../components/product';
 import SEO from '../components/SEO';
-import { Grid } from '@chakra-ui/core';
+import { Box, SimpleGrid } from '@chakra-ui/core';
 import HeadLine from '../components/headLine';
 
 const CategoryPage = ({
@@ -15,20 +15,17 @@ const CategoryPage = ({
 }) => {
   if (!category) return null;
   return (
-    <React.Fragment>
+    <Box w="100%">
       <SEO pageTitle={category.name}/>
       <HeadLine 
         textLine={category.name}
       />
-      <Grid 
-        templateColumns="repeat(4, 1fr)"
-        gap={6}
-      >
+      <SimpleGrid columns={{base: 1, sm: 2, md: 3, lg: 4}} spacing={{base: 2, sm: 4, md: 6, lg: 10}}>
         {category.products.map(product => (
           <Product key={product.sku} {...product}/>
         ))}
-      </Grid>
-    </React.Fragment>
+      </SimpleGrid>
+    </Box>
   )
 }
 

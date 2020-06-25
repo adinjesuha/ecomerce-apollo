@@ -13,19 +13,20 @@ const Product = ({...product}) => {
     }).format((price / 100).toFixed(2));
   
   return (
-    <Box 
-      w="100%"
-      h={350}
-      mb={20}
-    >
-      <Image
-        src={product.image}
-        alt={product.name}
-        size="100%"
-        objectFit="cover"
+    <Box w="100%" mb="20px">
+      <Box
+        height={{base:"350px",md: "400px", lg: "400px"}}
         overflow="hidden"
-      />
-      <Box mt={4}>
+      >
+        <Image
+          src={product.image}
+          alt={product.name}
+          size="100%"
+          objectFit="cover"
+          overflow="hidden"
+        />
+      </Box>
+      <Box mt="10px">
         <Text mb="2">{product.name}</Text>
         <Flex 
           align="center"

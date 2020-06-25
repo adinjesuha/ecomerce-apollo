@@ -1,12 +1,12 @@
 import React from 'react'
 import { graphql, useStaticQuery, Link } from 'gatsby'
-import { Grid, Box, Image, Heading } from '@chakra-ui/core'
+import { SimpleGrid, Box, Image, Heading } from '@chakra-ui/core'
 import HeadLine from './headLine'
 
 const Category = ({...category}) => (
   <Box
     pos="relative"
-    minH="400px"
+    minH={{base: "200px", md: "300px", lg: "400px"}}
   >
     <Image 
       src={category.image} 
@@ -50,16 +50,16 @@ const Categories = () => {
       <HeadLine 
         textLine="Shop by Category"
       />
-      <Grid templateColumns="repeat(3, 1fr)" gap={6} mb={6}>
-      {data.cms.categories.slice(0,3).map(category => (
-        <Category key={`${category.name}-${category.order}`} {...category}/>
-      ))}
-      </Grid>
-      <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+      <SimpleGrid columns={{base: 1, sm: 2}} spacing={{base:4, sm:6, md: 10}} mb={6}>
       {data.cms.categories.slice(3,5).map(category => (
         <Category key={`${category.name}-${category.order}`} {...category}/>
       ))}
-      </Grid>
+      </SimpleGrid>
+      <SimpleGrid columns={{base: 1, sm: 2, md: 3}} spacing={{base:4, sm:6, md: 10}} mb={6}>
+      {data.cms.categories.slice(0,3).map(category => (
+        <Category key={`${category.name}-${category.order}`} {...category}/>
+      ))}
+      </SimpleGrid>
     </React.Fragment>
   )
 }
