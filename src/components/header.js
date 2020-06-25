@@ -42,7 +42,7 @@ const Header = () => {
         mb="10px"
       >
         <Heading as="h1" size="lg">
-          <Link to="/">SIMPLE AS F#*@</Link>
+          <Link to="/">SIMPLE E-COMMERCE</Link>
         </Heading>
         <Button 
           leftIcon={MdShoppingCart}
