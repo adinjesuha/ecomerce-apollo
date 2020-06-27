@@ -6,7 +6,7 @@ import HeadLine from './headLine'
 const Category = ({...category}) => (
   <Box
     pos="relative"
-    minH={{base: "200px", md: "300px", lg: "400px"}}
+    minH={{base: "200px", md: "300px"}}
   >
     <Image 
       src={category.image} 
